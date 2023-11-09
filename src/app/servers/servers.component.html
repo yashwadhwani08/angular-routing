@@ -1,18 +1,33 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
-      <a
-        href="#"
-        class="list-group-item"
-        *ngFor="let server of servers">
+      <a href="#" class="list-group-item" *ngFor="let server of servers">
         {{ server.name }}
       </a>
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
+    <!-- Testing how not using leading slash for the routerLink affects -->
+
+    <!-- On clicking the 'reload page', we expected to stay on the same page without getting any error, but it throws an error 
+    Error: Uncaught (in promise): Error: NG04002: Cannot match any routes. URL Segment: 'servers/servers'
+
+    i.e. if leading slash is missing the current routerLink url is getting appeneded to the URL in the browser currently (because being treated as a 'relative path') and hence trying to find localhost:4200/servers/servers (which is no path as per registered routes in the app.module.ts)
+    -->
+    <!-- <a routerLink="servers">Reload page</a> -->
+    <!-- Relative paths can also be starting with dots: 
+    Add to the currently loaded part:
+    <a routerLink="./servers">Reload page</a>
+
+    Add to the path by removing the current path segment and then going to the specified path (like in directory)
+    <a routerLink="../servers">Reload page</a>
+  
+    -->
+
+    <!-- Resolving the error with leading slash (hence making the path the absolute path: localhost:4200/servers) to routerLink making it an absolute URL which would be appended to localhost:4200/ -->
+    <a routerLink="/servers">Reload page</a>
     <app-edit-server></app-edit-server>
-    <hr>
+    <hr />
     <app-server></app-server>
   </div>
 </div>
-

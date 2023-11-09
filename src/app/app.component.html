@@ -8,12 +8,21 @@
         <li role="presentation"><a href="/users">Users</a></li> -->
 
         <!-- Adding routerLink directive instead of href -->
-        <li role="presentation" class="active"><a routerLink="/">Home</a></li>
-        <li role="presentation"><a routerLink="/servers">Servers</a></li>
+        <!-- <li role="presentation" class="active"><a routerLink="/">Home</a></li>
+        <li role="presentation"><a routerLink="/servers">Servers</a></li> -->
         <!-- <li role="presentation"><a routerLink="/users">Users</a></li> -->
 
         <!-- Another way of using routerLink is with property binding -->
-        <li role="presentation"><a [routerLink]="['/users']">Users</a></li>
+        <!-- <li role="presentation"><a [routerLink]="['/users']">Users</a></li> -->
+
+
+        <!-- Checking what happens if we pass routerLinks the paths without leading slash -->
+
+        <!-- Result: Nothing really changes when navigation by entering path manually or by clicking on the links however the real change can be realised if we add a routerLink to another link inside a component: e.g. in servers.component.html -->
+
+        <li role="presentation" class="active"><a routerLink="/">Home</a></li>
+        <li role="presentation"><a routerLink="servers">Servers</a></li>
+        <li role="presentation"><a [routerLink]="['users']">Users</a></li>
       </ul>
     </div>
   </div>
