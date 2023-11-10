@@ -15,14 +15,21 @@
         <!-- Another way of using routerLink is with property binding -->
         <!-- <li role="presentation"><a [routerLink]="['/users']">Users</a></li> -->
 
-
         <!-- Checking what happens if we pass routerLinks the paths without leading slash -->
 
         <!-- Result: Nothing really changes when navigation by entering path manually or by clicking on the links however the real change can be realised if we add a routerLink to another link inside a component: e.g. in servers.component.html -->
 
-        <li role="presentation" class="active"><a routerLink="/">Home</a></li>
-        <li role="presentation"><a routerLink="servers">Servers</a></li>
-        <li role="presentation"><a [routerLink]="['users']">Users</a></li>
+
+        <!-- Using routerLink to see active tabs, however 'home' is set to active always with this approach since routerLink works based on path matching by analysing your currently loaded path, it always matches '/' even when we are at '/servers' or '/servers'. To fix this we can use routerLinkActiveOptions with property binding with 'exact' a reserved property set to true, so only when the full exact-path matches it will add the routerLinkActive class else not. -->
+        <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/">Home</a>
+        </li>
+        <li role="presentation" routerLinkActive="active">
+          <a routerLink="servers">Servers</a>
+        </li>
+        <li role="presentation" routerLinkActive="active">
+          <a [routerLink]="['users']">Users</a>
+        </li>
       </ul>
     </div>
   </div>
