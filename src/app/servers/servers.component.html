@@ -25,7 +25,8 @@
     -->
 
     <!-- Resolving the error with leading slash (hence making the path the absolute path: localhost:4200/servers) to routerLink making it an absolute URL which would be appended to localhost:4200/ -->
-    <a routerLink="/servers">Reload page</a>
+    <!-- <a routerLink="/servers">Reload page</a> -->
+    <button class="btn btn-primary" (click)="onReload()">Reload Page</button>
     <app-edit-server></app-edit-server>
     <hr />
     <app-server></app-server>
