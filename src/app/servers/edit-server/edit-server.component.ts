@@ -25,7 +25,7 @@ export class EditServerComponent implements OnInit {
 
     // we can use this observable approach to reactive retrieval of queryParams and fragment
     this.route.queryParams.subscribe((queryParam: object)=>{console.log(queryParam['allowEdit'])});
-    this.route.fragment.subscribe();
+    this.route.fragment.subscribe((fragment: string)=>{console.log(fragment)});
     this.server = this.serversService.getServer(1);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
