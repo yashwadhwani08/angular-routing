@@ -1,2 +1,12 @@
-<p>User with ID _ID_ loaded.</p>
-<p>User name is _NAME_</p>
+<p>User with ID {{ user.id }}.</p>
+<p>User name is {{ user.name }}</p>
+<hr />
+<a [routerLink]="['/users', 10, 'Anna']">Load Anna (10)</a>
+<!-- Ideally we would expect, the text above should have changed above with 10 and Anna but it doesn't.
+
+Reason: We load our data by using the snapshot object on the route (TS file), now if load a new route, what happens? => Angular has a look at our app module, finds the fitting route here, loads the component, initializes the component and gives us the data by accessing the snapshot here, now that only happens if we haven't been on this component before, but if we click this link which is on the user component, the URL still changes but we are on the component which should get loaded, so Angular cleverly doesn't reinstantiate this component (would have costed us performance) since why would it rerender a component we already are on. Angular doesn't know if the data changed.
+
+Still if you want to get the access to the updated data, you can. It is fine to use the snapshot for the first initialization but to be able to react to subsequent changes, we need different approach.
+
+
+-->

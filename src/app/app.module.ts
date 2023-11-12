@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   { path: 'servers', component: ServersComponent },
   { path: 'users', component: UsersComponent },
   // Using parameters in route for dynamic data in route
-  { path: 'users/:id', component: UserComponent },
+  { path: 'users/:id/:name', component: UserComponent },
 ];
 
 @NgModule({
