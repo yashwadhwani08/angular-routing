@@ -36,6 +36,8 @@
     <button class="btn btn-primary" (click)="onReload()">Reload Page</button>
     <app-edit-server></app-edit-server>
     <hr />
+    <!-- Adding router-outlet directive here for loading all child routes of the route being loaded on the servers-component, which is /servers route here -->
+    <router-outlet></router-outlet>
     <!-- <app-server></app-server> -->
   </div>
 </div>
