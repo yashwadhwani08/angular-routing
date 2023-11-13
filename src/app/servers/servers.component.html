@@ -4,7 +4,7 @@
       <a
         href="#"
         [routerLink]="['/servers', server.id]"
-        [queryParams]="{ allowEdit: '1' }"
+        [queryParams]="{ allowEdit: server.id === 3 ? '1' : '0' }"
         [fragment]="'loading'"
         class="list-group-item"
         *ngFor="let server of servers"
@@ -34,7 +34,7 @@
     <!-- Resolving the error with leading slash (hence making the path the absolute path: localhost:4200/servers) to routerLink making it an absolute URL which would be appended to localhost:4200/ -->
     <!-- <a routerLink="/servers">Reload page</a> -->
     <button class="btn btn-primary" (click)="onReload()">Reload Page</button>
-    <app-edit-server></app-edit-server>
+    <!-- <app-edit-server></app-edit-server> -->
     <hr />
     <!-- Adding router-outlet directive here for loading all child routes of the route being loaded on the servers-component, which is /servers route here -->
     <router-outlet></router-outlet>

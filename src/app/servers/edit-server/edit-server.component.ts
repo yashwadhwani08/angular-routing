@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-edit-server',
@@ -12,6 +12,7 @@ export class EditServerComponent implements OnInit {
   server: { id: number; name: string; status: string };
   serverName = '';
   serverStatus = '';
+  allowEdit = false;
 
   constructor(
     private serversService: ServersService,
@@ -24,8 +25,13 @@ export class EditServerComponent implements OnInit {
     console.log(this.route.snapshot.fragment);
 
     // we can use this observable approach to reactive retrieval of queryParams and fragment
-    this.route.queryParams.subscribe((queryParam: object)=>{console.log(queryParam['allowEdit'])});
-    this.route.fragment.subscribe((fragment: string)=>{console.log(fragment)});
+    this.route.queryParams.subscribe((queryParam: Params) => {
+      console.log(queryParam['allowEdit']);
+      this.allowEdit = queryParam['allowEdit'] === '1' ? true : false;
+    });
+    this.route.fragment.subscribe((fragment: string) => {
+      console.log(fragment);
+    });
     this.server = this.serversService.getServer(1);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
