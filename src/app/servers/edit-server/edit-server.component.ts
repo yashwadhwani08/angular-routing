@@ -23,6 +23,7 @@ export class EditServerComponent implements OnInit {
     // This snapshot approach is non-reactive, only runs/updated once the component is initilaized so when changing queryParams/fragment whilst on the component this would change the URL but the component won't be rerendered (reinitialized)
     console.log(this.route.snapshot.queryParams);
     console.log(this.route.snapshot.fragment);
+    console.log(this.route.snapshot.params['id']);
 
     // we can use this observable approach to reactive retrieval of queryParams and fragment
     this.route.queryParams.subscribe((queryParam: Params) => {
@@ -32,9 +33,19 @@ export class EditServerComponent implements OnInit {
     this.route.fragment.subscribe((fragment: string) => {
       console.log(fragment);
     });
-    this.server = this.serversService.getServer(1);
+    // this.server = this.serversService.getServer(1);
+    this.server = this.serversService.getServer(
+      +this.route.snapshot.params['id']
+    );
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
+
+    this.route.params.subscribe((params: Params) => {
+      console.log('Params subscribe called in edit server!');
+      this.server = this.serversService.getServer(+params['id']);
+      this.serverName = this.server.name;
+      this.serverStatus = this.server.status;
+    });
   }
 
   onUpdateServer() {
