@@ -7,12 +7,19 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
+import { AuthGuard } from './auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'servers',
     component: ServersComponent,
+
+    // To use guard, we use the property canActivate in the route, it takes an array of all the guards you want to apply to this route and it will automatically get applied to all the child routes.
+
+    // using AuthGuard on the 'servers' ensusres that servers and all its child routes are now only accessible if the AuthGuard-canActivate() method returns true in the end.
+
+    canActivate: [AuthGuard],
     children: [
       // The remaining path and the component to load on that path has to mentioned within the children array in the parent route. To load the children route, we need another router-outlet, because the one used in app.component.html is responsible fpr top-level routes, not their children. The outlet in this case, would be created/put inside servers-component template.
 
