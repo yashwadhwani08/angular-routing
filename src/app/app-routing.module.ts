@@ -19,7 +19,10 @@ const appRoutes: Routes = [
 
     // using AuthGuard on the 'servers' ensusres that servers and all its child routes are now only accessible if the AuthGuard-canActivate() method returns true in the end.
 
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
+
+    // canActivateChild propety can be used to protect the nested routes, also takes an array of services which acts as guards (which implement the right interfaces)
+    canActivateChild: [AuthGuard],
     children: [
       // The remaining path and the component to load on that path has to mentioned within the children array in the parent route. To load the children route, we need another router-outlet, because the one used in app.component.html is responsible fpr top-level routes, not their children. The outlet in this case, would be created/put inside servers-component template.
 
