@@ -14,6 +14,7 @@ import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { AuthGuard } from './auth-guard.service';
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   // defining the two new services we created for protecting routes
-  providers: [ServersService, AuthService, AuthGuard],
+  providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
